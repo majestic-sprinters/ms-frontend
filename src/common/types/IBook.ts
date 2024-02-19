@@ -1,6 +1,6 @@
 interface IBook {
 
-    id: string;
+    id?: string;
 
     name: string;
 

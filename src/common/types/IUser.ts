@@ -1,6 +1,6 @@
 interface IUser {
 
-    id: string;
+    id?: string;
 
     fio: string;
 
