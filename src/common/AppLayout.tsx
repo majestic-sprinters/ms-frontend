@@ -4,9 +4,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Footer } = Layout;
 
 const items = [
-    {key: 'books', label: 'books'},
-    {key: 'find a book', label: 'find a book'},
-    // {key: 'users', label: 'users'}
+    {key: '/books', label: 'books'},
+    {key: '/book-search', label: 'find a book'},
+    {key: '/users', label: 'users'},
+    {key: '/user-search', label: 'find a user'},
 ]
 
 const AppLayout = (): JSX.Element => {
@@ -17,19 +18,7 @@ const AppLayout = (): JSX.Element => {
     const navigate = useNavigate();
 
     const handleNavigation: MenuProps["onClick"] = (e) => {
-        switch (e.key) {
-            case "books":
-                navigate("/books");
-                break;
-            case "find a book":
-                navigate("/book-search");
-                break;
-            case "users":
-                navigate("/users");
-                break;
-            default:
-                break;
-        }
+        navigate(e.key);
     };
 
     return (

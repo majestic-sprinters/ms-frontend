@@ -3,32 +3,31 @@ import IBook from "../../common/types/IBook";
 import { Button, Input } from "antd";
 import BookCard from "./components/BookCard";
 import { useGetBookByName } from "../../common/api/books";
+import IUser from "../../common/types/IUser";
+import UserCard from "./components/UserCard";
+import { useGetUserByUsername } from "../../common/api/users";
 
-const tempBook: IBook = {
-    name: "Harry Potter",
-    author: "JK Rowling",
-    description: "Wizards are unknown world for...",
-    publisher: "London Printer x",
-    year: 2000,
+const tempUser: IUser = {
+    username: 'raxkhman',
+    fio: 'Abay Rakhman Abayuly',
+    gender: 'MALE'
 };
 
-const BooksSearchPage = (): JSX.Element => {
-    // const [foundBook, setFoundBook] = useState<IBook | undefined>(tempBook);
+const UsersSearchPage = (): JSX.Element => {
     const [query, setQuery] = useState("");
-    // const [queryToSeachBy, setQuery] = useState("");
 
     const {
-        data: foundBook,
+        data: foundUser,
         isLoading,
         isError,
-    } = useGetBookByName({ name: query });
+    } = useGetUserByUsername({ username: query });
 
     return (
         <>
             <Input
                 name="query"
                 defaultValue={query}
-                placeholder="Enter a book name"
+                placeholder="Enter username"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
             />
@@ -36,20 +35,16 @@ const BooksSearchPage = (): JSX.Element => {
              <Button style={{ marginTop: "10px" }} type="primary" onClick={handleBookSearch}>
                 Search
             </Button> */}
-            {/* {foundBook ? (
-                <BookCard book={tempBook} />
+            {/* {isLoading ? (
+                "Loading..."
+            ) : foundUser ? (
+                <UserCard user={tempUser} />
             ) : (
                 <h1>Such book was not found</h1>
             )} */}
-            {isLoading ? (
-                "Loading..."
-            ) : foundBook ? (
-                <BookCard book={tempBook} />
-            ) : (
-                <h1>Such book was not found</h1>
-            )}
+            <UserCard user={tempUser} />
         </>
     );
 };
 
-export default BooksSearchPage;
+export default UsersSearchPage;

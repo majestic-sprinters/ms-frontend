@@ -3,29 +3,32 @@ import BooksAddOrEditModal from "./components/BookAddOrEditModal";
 import { Button, Modal } from "antd";
 import IBook from "../../common/types/IBook";
 import BooksListContainer from "./components/BooksListContainer";
+import IUser from "../../common/types/IUser";
+import UserAddOrEditModal from "./components/UserAddOrEditModal";
+import UserListContainer from "./components/UserListContainer";
 
-const BooksPage = (): JSX.Element => {
+const UsersPage = (): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editBook, setEditBook] = useState<IBook | undefined>(undefined);
+    const [editUser, setEditUser] = useState<IUser | undefined>(undefined);
 
-    const modalTitle = editBook ? "Edit selected book" : "Add new book";
+    const modalTitle = editUser ? "Edit selected user" : "Add new user";
 
     return (
         <>
             <Button style={{ marginBottom: '10px' }} type="primary" onClick={() => setIsModalOpen(true)}>
-                Add new book
+                Add new user
             </Button>
-            <BooksListContainer />
+            <UserListContainer />
             <Modal
                 title={modalTitle}
                 open={isModalOpen}
                 onOk={() => setIsModalOpen(false)}
                 onCancel={() => setIsModalOpen(false)}
                 footer={[]}>
-                <BooksAddOrEditModal bookToEdit={editBook} />
+                <UserAddOrEditModal userToEdit={editUser} />
             </Modal>
         </>
     );
 };
 
-export default BooksPage;
+export default UsersPage;
