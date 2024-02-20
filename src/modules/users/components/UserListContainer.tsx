@@ -2,8 +2,13 @@ import toastUtil from "../../../common/toastUtil";
 import { List, Typography } from "antd";
 import { useGetUsers } from "../../../common/api/users";
 import UserList from "./UserList";
+import IUser from "../../../common/types/IUser";
 
-const UserListContainer = (): JSX.Element => {
+interface Props {
+    handleEdit: (userToEdit: IUser) => void
+}
+
+const UserListContainer = ({ handleEdit }: Props): JSX.Element => {
     const {
         data,
         isLoading,
@@ -30,7 +35,7 @@ const UserListContainer = (): JSX.Element => {
         );
     }
 
-    return <UserList users={data ?? []} />;
+    return <UserList handleEdit={handleEdit} users={data ?? []} />;
 };
 
 export default UserListContainer;

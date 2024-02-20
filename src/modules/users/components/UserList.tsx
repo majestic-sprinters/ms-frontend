@@ -1,14 +1,25 @@
-import { List, Typography } from "antd";
+import { Button, List, Typography } from "antd";
 import IUser from "../../../common/types/IUser";
+import { useQueryClient } from "react-query";
+import { useDeleteUser } from "../../../common/api/users";
 
 interface Props {
-    users: IUser[]
+    users: IUser[],
+    handleEdit: (userToEdit: IUser) => void
 }
 
-const UserList = ({ users }: Props): JSX.Element => {
+const UserList = ({ users, handleEdit }: Props): JSX.Element => {
+
+    const queryClient = useQueryClient()
+    const { mutate } = useDeleteUser(queryClient)
+
+    const handleDelete = (username: string) => {
+        mutate(username)
+    }
+
     return (
         <List
-            header={<Typography.Title level={5}>Books</Typography.Title>}
+            header={<Typography.Title level={5}>Users</Typography.Title>}
             bordered
             dataSource={users}
             renderItem={(item) => (
@@ -16,17 +27,17 @@ const UserList = ({ users }: Props): JSX.Element => {
                     <Typography.Text>{item.username}</Typography.Text>
                     <Typography.Text>{item.fio}</Typography.Text>
                     <Typography.Text>{item.gender}</Typography.Text>
-                    {/* <Button TODO: implemement edit
+                    <Button
                         type="primary"
-                        onClick={() => handleEdit(item, true)}>
-                        Редактировать
-                    </Button> */}
-                    {/* <Button TODO: implemement delete
+                        onClick={() => handleEdit(item)}>
+                        Edit
+                    </Button>
+                    <Button
                         type="primary"
                         danger
-                        onClick={() => handleDelete(item.id, true)}>
-                        Удалить
-                    </Button> */}
+                        onClick={() => handleDelete(item.username)}>
+                        Delete
+                    </Button>
                 </List.Item>
             )}
         />

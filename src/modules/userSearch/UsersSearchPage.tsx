@@ -1,22 +1,16 @@
 import { useState } from "react";
-import { Input } from "antd";
-import IUser from "../../common/types/IUser";
+import { Button, Input } from "antd";
 import UserCard from "./components/UserCard";
 import { useGetUserByUsername } from "../../common/api/users";
-
-const tempUser: IUser = {
-    username: 'raxkhman',
-    fio: 'Abay Rakhman Abayuly',
-    gender: 'MALE'
-};
 
 const UsersSearchPage = (): JSX.Element => {
     const [query, setQuery] = useState("");
 
     const {
-        // data: foundUser,
-        // isLoading,
-        // isError,
+        data,
+        isLoading,
+        isError,
+        refetch
     } = useGetUserByUsername({ username: query });
 
     return (
@@ -28,18 +22,16 @@ const UsersSearchPage = (): JSX.Element => {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
             />
-            {/* TODO: remove
-             <Button style={{ marginTop: "10px" }} type="primary" onClick={handleBookSearch}>
+            <Button style={{ marginTop: "10px" }} type="primary" onClick={() => refetch()}>
                 Search
-            </Button> */}
-            {/* {isLoading ? (
+            </Button>
+            {isLoading ? (
                 "Loading..."
-            ) : foundUser ? (
-                <UserCard user={tempUser} />
+            ) : !isError ? (
+                <UserCard user={data!!} />
             ) : (
-                <h1>Such book was not found</h1>
-            )} */}
-            <UserCard user={tempUser} />
+                <h1>Such user was not found</h1>
+            )}
         </>
     );
 };

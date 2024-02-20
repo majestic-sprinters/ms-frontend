@@ -45,3 +45,20 @@ export const useGetUserByUsername = (params: getUserByNameParams) => {
     return useQuery(USER_QUERY_KEY, () => fetchUserByUsername(params));
 };
 // #endregion
+
+// #region Delete
+const deleteUser = async (username: string) => {
+    await apiClient.users.deleteUserByUsername(username);
+};
+export const useDeleteUser = (queryClient: QueryClient) => {
+    return useMutation(deleteUser, {
+        onSuccess: (_) => {
+            // invalidate the query cache for 'users'
+            queryClient.invalidateQueries(USER_LIST_QUERY_KEY);
+        },
+        onError: (_) => {
+            // handle error
+        },
+    });
+};
+// #endregion

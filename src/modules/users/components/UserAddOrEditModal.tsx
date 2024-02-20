@@ -50,6 +50,7 @@ const UserAddOrEditModal = ({ userToEdit }: Props): JSX.Element => {
                         },
                     ]}>
                     <Input
+                        disabled={isEditMode}
                         name="username"
                         defaultValue={form.username}
                         placeholder="Username"
