@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios"
 import IUser from "../types/IUser"
 import IBook from "../types/IBook"
 
-const BASE_URL = 'http://52.186.50.233:8080' // TODO: move to 'env' process.env.API_URL
+const BASE_URL = 'http://13.82.19.126' // TODO: move to 'env'
 
 const apiClient = {
     users: {
