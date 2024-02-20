@@ -45,3 +45,20 @@ export const useCreateOrUpdateBook = (queryClient: QueryClient) => {
     });
 };
 // #endregion
+
+// #region Delete
+const deleteBook = async (name: string) => {
+    await apiClient.books.deleteBookByName(name);
+};
+export const useDeleteBook = (queryClient: QueryClient) => {
+    return useMutation(deleteBook, {
+        onSuccess: (_) => {
+            // invalidate the query cache for 'books'
+            queryClient.invalidateQueries(BOOK_LIST_QUERY_KEY);
+        },
+        onError: (_) => {
+            // handle error
+        },
+    });
+};
+// #endregion

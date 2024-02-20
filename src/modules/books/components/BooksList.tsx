@@ -1,11 +1,21 @@
-import { List, Typography } from "antd";
+import { Button, List, Typography } from "antd";
 import IBook from "../../../common/types/IBook";
+import { useDeleteBook } from "../../../common/api/books";
+import { useQueryClient } from "react-query";
 
 interface Props {
     books: IBook[]
 }
 
 const BooksList = ({ books }: Props): JSX.Element => {
+
+    const queryClient = useQueryClient()
+    const { mutate } = useDeleteBook(queryClient)
+
+    const handleDelete = (name: string) => {
+        mutate(name)
+    }
+
     return (
         <List
             header={<Typography.Title level={5}>Books</Typography.Title>}
@@ -23,12 +33,12 @@ const BooksList = ({ books }: Props): JSX.Element => {
                         onClick={() => handleEdit(item, true)}>
                         Редактировать
                     </Button> */}
-                    {/* <Button TODO: implemement delete
+                    <Button
                         type="primary"
                         danger
-                        onClick={() => handleDelete(item.id, true)}>
+                        onClick={() => handleDelete(item.name)}>
                         Удалить
-                    </Button> */}
+                    </Button>
                 </List.Item>
             )}
         />
