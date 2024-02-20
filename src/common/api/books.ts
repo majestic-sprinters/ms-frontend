@@ -1,8 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { QueryClient, useMutation, useQuery } from "react-query";
 import IBook from "../types/IBook";
 import apiClient from "./apiClient";
 
-const queryClient = useQueryClient();
 const BOOK_LIST_QUERY_KEY = ["books"];
 const CREATE_BOOK_QUERY_KEY = "createBook";
 
@@ -18,7 +17,7 @@ const createOrUpdateBook = async (payload: IBook) => {
     const { data } = await apiClient.books.createOrUpdate(payload);
     return data;
 };
-export const useCreateOrUpdateBook = () => {
+export const useCreateOrUpdateBook = (queryClient: QueryClient) => {
     return useMutation<IBook, Error, IBook>(createOrUpdateBook, {
         onSuccess: (bookData) => {
             // invalidate the query cache for 'books'
