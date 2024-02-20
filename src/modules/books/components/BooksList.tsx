@@ -8,7 +8,7 @@ interface Props {
 const BooksList = ({ books }: Props): JSX.Element => {
     return (
         <List
-            header={<Typography.Title level={5}>Доходы</Typography.Title>}
+            header={<Typography.Title level={5}>Books</Typography.Title>}
             bordered
             dataSource={books}
             renderItem={(item) => (
