@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import BooksPage from "../modules/books/BooksPage";
 import AppLayout from "./AppLayout";
+import BooksSearchPage from "../modules/bookSearch/BooksSearchPage";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/book-search",
-                element: <h1>YET TO IMPLEMENT</h1>, // TODO: implement
+                element: <BooksSearchPage />,
             },
             {
                 path: "/users",
