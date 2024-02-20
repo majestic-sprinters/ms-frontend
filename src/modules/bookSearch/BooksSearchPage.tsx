@@ -1,6 +1,6 @@
 import { useState } from "react";
 import IBook from "../../common/types/IBook";
-import { Button, Input } from "antd";
+import { Input } from "antd";
 import BookCard from "./components/BookCard";
 import { useGetBookByName } from "../../common/api/books";
 
@@ -19,8 +19,7 @@ const BooksSearchPage = (): JSX.Element => {
 
     const {
         data: foundBook,
-        isLoading,
-        isError,
+        isLoading
     } = useGetBookByName({ name: query });
 
     return (

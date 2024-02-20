@@ -1,6 +1,4 @@
-import { Button, Form, Input, InputNumber, Select } from "antd";
-import IBook from "../../../common/types/IBook";
-import { useCreateOrUpdateBook } from "../../../common/api/books";
+import { Button, Form, Input, Select } from "antd";
 import { ChangeEvent, useState } from "react";
 import { useQueryClient } from "react-query";
 import IUser from "../../../common/types/IUser";
@@ -21,7 +19,7 @@ const UserAddOrEditModal = ({ userToEdit }: Props): JSX.Element => {
     const [form, setForm] = useState<IUser>(userToEdit ?? userDefault);
 
     const queryClient = useQueryClient();
-    const { mutate, isLoading, isError } = useCreateOrUpdateUser(queryClient);
+    const { mutate, isLoading } = useCreateOrUpdateUser(queryClient);
 
     const handleUserAdditionOrEditing = () => {
         const payload = { ...form };

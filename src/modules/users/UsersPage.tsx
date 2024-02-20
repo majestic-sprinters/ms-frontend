@@ -1,15 +1,12 @@
 import { useState } from "react";
-import BooksAddOrEditModal from "./components/BookAddOrEditModal";
 import { Button, Modal } from "antd";
-import IBook from "../../common/types/IBook";
-import BooksListContainer from "./components/BooksListContainer";
 import IUser from "../../common/types/IUser";
 import UserAddOrEditModal from "./components/UserAddOrEditModal";
 import UserListContainer from "./components/UserListContainer";
 
 const UsersPage = (): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editUser, setEditUser] = useState<IUser | undefined>(undefined);
+    const [editUser, _] = useState<IUser | undefined>(undefined);
 
     const modalTitle = editUser ? "Edit selected user" : "Add new user";
 

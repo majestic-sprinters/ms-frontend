@@ -4,7 +4,6 @@ import apiClient from "./apiClient";
 
 const BOOK_LIST_QUERY_KEY = ["books"];
 const BOOK_QUERY_KEY = ["book"];
-const CREATE_BOOK_QUERY_KEY = "createBook";
 
 // #region allBooks
 const fetchBooks = async (): Promise<IBook[]> => {
@@ -36,11 +35,11 @@ const createOrUpdateBook = async (payload: IBook) => {
 };
 export const useCreateOrUpdateBook = (queryClient: QueryClient) => {
     return useMutation<IBook, Error, IBook>(createOrUpdateBook, {
-        onSuccess: (bookData) => {
+        onSuccess: (_) => {
             // invalidate the query cache for 'books'
             queryClient.invalidateQueries(BOOK_LIST_QUERY_KEY);
         },
-        onError: (error) => {
+        onError: (_) => {
             // handle error
         },
     });

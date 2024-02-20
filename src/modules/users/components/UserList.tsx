@@ -1,4 +1,4 @@
-import { Button, List, Typography } from "antd";
+import { List, Typography } from "antd";
 import IUser from "../../../common/types/IUser";
 
 interface Props {

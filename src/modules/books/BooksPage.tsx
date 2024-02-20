@@ -6,7 +6,7 @@ import BooksListContainer from "./components/BooksListContainer";
 
 const BooksPage = (): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editBook, setEditBook] = useState<IBook | undefined>(undefined);
+    const [editBook, _] = useState<IBook | undefined>(undefined);
 
     const modalTitle = editBook ? "Edit selected book" : "Add new book";
 

@@ -25,7 +25,7 @@ const UserListContainer = (): JSX.Element => {
                 }
                 bordered
                 dataSource={[]}
-                renderItem={(item) => <List.Item></List.Item>}
+                renderItem={(_) => <List.Item></List.Item>}
             />
         );
     }

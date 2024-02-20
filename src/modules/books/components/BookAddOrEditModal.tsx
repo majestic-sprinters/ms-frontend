@@ -22,7 +22,7 @@ const BooksAddOrEditModal = ({ bookToEdit }: Props): JSX.Element => {
     const [form, setForm] = useState<IBook>(bookToEdit ?? bookDefault)
 
     const queryClient = useQueryClient()
-    const { mutate, isLoading, isError } = useCreateOrUpdateBook(queryClient);
+    const { mutate, isLoading } = useCreateOrUpdateBook(queryClient);
 
     const handleBookAdditionOrEditing = () => { 
         const payload = {...form}

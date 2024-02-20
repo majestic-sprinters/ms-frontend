@@ -1,11 +1,9 @@
 import { QueryClient, useMutation, useQuery } from "react-query";
-import IBook from "../types/IBook";
 import apiClient from "./apiClient";
 import IUser from "../types/IUser";
 
 const USER_LIST_QUERY_KEY = ["users"];
 const USER_QUERY_KEY = ["user"];
-const CREATE_USER_QUERY_KEY = "createUser";
 
 // #region allBooks
 const fetchUsers = async (): Promise<IUser[]> => {
@@ -24,11 +22,11 @@ const createOrUpdateUser = async (payload: IUser) => {
 };
 export const useCreateOrUpdateUser = (queryClient: QueryClient) => {
     return useMutation<IUser, Error, IUser>(createOrUpdateUser, {
-        onSuccess: (data) => {
+        onSuccess: (_) => {
             // invalidate the query cache for 'books'
             queryClient.invalidateQueries(USER_LIST_QUERY_KEY);
         },
-        onError: (error) => {
+        onError: (_) => {
             // handle error
         },
     });
