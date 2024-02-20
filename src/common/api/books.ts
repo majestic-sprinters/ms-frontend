@@ -20,7 +20,8 @@ type getBookByNameParams = {
     name: string;
 }
 const fetchBookByName = async (params: getBookByNameParams): Promise<IBook> => {
-    const { data } = await apiClient.books.getBookByName(params.name);
+    const name = params.name.replace(' ', '%20')
+    const { data } = await apiClient.books.getBookByName(name);
     return data;
 };
 export const useGetBookByName = (params: getBookByNameParams) => {

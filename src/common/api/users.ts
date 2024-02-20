@@ -38,7 +38,8 @@ type getUserByNameParams = {
     username: string;
 }
 const fetchUserByUsername = async (params: getUserByNameParams): Promise<IUser> => {
-    const { data } = await apiClient.users.getUserByUsername(params.username);
+    const username = params.username.replace(' ', '%20')
+    const { data } = await apiClient.users.getUserByUsername(username);
     return data;
 };
 export const useGetUserByUsername = (params: getUserByNameParams) => {
