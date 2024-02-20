@@ -2,8 +2,13 @@ import BooksList from "./BooksList";
 import { useGetBooks } from "../../../common/api/books";
 import toastUtil from "../../../common/toastUtil";
 import { List, Typography } from "antd";
+import IBook from "../../../common/types/IBook";
 
-const BooksListContainer = (): JSX.Element => {
+interface Props {
+    handleEdit: (bookToEdit: IBook) => void
+}
+
+const BooksListContainer = ({ handleEdit }: Props): JSX.Element => {
     const {
         data: books,
         isLoading: isBooksLoading,
@@ -30,7 +35,7 @@ const BooksListContainer = (): JSX.Element => {
         );
     }
 
-    return <BooksList books={books ?? []} />;
+    return <BooksList handleEdit={handleEdit} books={books ?? []} />;
 };
 
 export default BooksListContainer;

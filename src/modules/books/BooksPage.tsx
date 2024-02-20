@@ -6,23 +6,33 @@ import BooksListContainer from "./components/BooksListContainer";
 
 const BooksPage = (): JSX.Element => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editBook, _] = useState<IBook | undefined>(undefined);
+    const [editBook, setEditBook] = useState<IBook | undefined>(undefined);
 
     const modalTitle = editBook ? "Edit selected book" : "Add new book";
+
+    const handleEdit = (bookToEdit: IBook) => {
+        setEditBook(bookToEdit)
+        setIsModalOpen(true)
+    }
+
+    const handleCloseModal = () => {
+        setEditBook(undefined)
+        setIsModalOpen(false)
+    }
 
     return (
         <>
             <Button style={{ marginBottom: '10px' }} type="primary" onClick={() => setIsModalOpen(true)}>
                 Add new book
             </Button>
-            <BooksListContainer />
+            <BooksListContainer handleEdit={handleEdit} />
             <Modal
                 title={modalTitle}
                 open={isModalOpen}
                 onOk={() => setIsModalOpen(false)}
-                onCancel={() => setIsModalOpen(false)}
+                onCancel={handleCloseModal}
                 footer={[]}>
-                <BooksAddOrEditModal bookToEdit={editBook} />
+                <BooksAddOrEditModal bookToEdit={editBook} key={editBook?.name} />
             </Modal>
         </>
     );

@@ -53,6 +53,7 @@ const BooksAddOrEditModal = ({ bookToEdit }: Props): JSX.Element => {
                         },
                     ]}>
                     <Input
+                        disabled={isEditMode}
                         name="name"
                         defaultValue={form.name}
                         placeholder="Name"

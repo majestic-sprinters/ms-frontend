@@ -37,7 +37,7 @@ const apiClient = {
         },
 
         deleteBookByName: async (name: string): Promise<AxiosResponse<void>> => {
-            return await axios.delete(`${BASE_URL}/api/v1/user/deleteBookByName/${name}`)
+            return await axios.delete(`${BASE_URL}/api/v1/book/deleteBookByName/${name}`)
         },
     }
 }

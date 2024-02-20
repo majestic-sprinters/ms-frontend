@@ -4,10 +4,11 @@ import { useDeleteBook } from "../../../common/api/books";
 import { useQueryClient } from "react-query";
 
 interface Props {
-    books: IBook[]
+    books: IBook[],
+    handleEdit: (bookToEdit: IBook) => void
 }
 
-const BooksList = ({ books }: Props): JSX.Element => {
+const BooksList = ({ books, handleEdit }: Props): JSX.Element => {
 
     const queryClient = useQueryClient()
     const { mutate } = useDeleteBook(queryClient)
@@ -28,16 +29,16 @@ const BooksList = ({ books }: Props): JSX.Element => {
                     <Typography.Text>{item.author}</Typography.Text>
                     <Typography.Text>{item.publisher}</Typography.Text>
                     <Typography.Text>{item.year}</Typography.Text>
-                    {/* <Button TODO: implemement edit
+                    <Button
                         type="primary"
-                        onClick={() => handleEdit(item, true)}>
-                        Редактировать
-                    </Button> */}
+                        onClick={() => handleEdit(item)}>
+                        Edit
+                    </Button>
                     <Button
                         type="primary"
                         danger
                         onClick={() => handleDelete(item.name)}>
-                        Удалить
+                        Delete
                     </Button>
                 </List.Item>
             )}
