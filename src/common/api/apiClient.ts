@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios"
 import IUser from "../types/IUser"
 import IBook from "../types/IBook"
 
-const BASE_URL = 'http://13.82.19.126' // TODO: move to 'env'
+const BASE_URL = import.meta.env.VITE_API_URL
 
 const apiClient = {
     users: {
