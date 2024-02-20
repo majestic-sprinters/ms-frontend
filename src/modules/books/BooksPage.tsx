@@ -15,7 +15,7 @@ const BooksPage = (): JSX.Element => {
 
     return (
         <>
-            <Button type="primary" onClick={() => setIsModalOpen(true)}>
+            <Button style={{ marginBottom: '10px' }} type="primary" onClick={() => setIsModalOpen(true)}>
                 Add new book
             </Button>
             <BooksListContainer />
