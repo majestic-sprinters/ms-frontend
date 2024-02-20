@@ -2,6 +2,7 @@ import { Button, Form, Input, InputNumber } from "antd";
 import IBook from "../../../common/types/IBook";
 import { useCreateOrUpdateBook } from "../../../common/api/books";
 import { ChangeEvent, useState } from "react";
+import { useQueryClient } from "react-query";
 
 const bookDefault: IBook = {
     id: undefined,
@@ -20,7 +21,8 @@ const BooksAddOrEditModal = ({ bookToEdit }: Props): JSX.Element => {
     const isEditMode = !(typeof bookToEdit === 'undefined') 
     const [form, setForm] = useState<IBook>(bookToEdit ?? bookDefault)
 
-    const { mutate, isLoading, isError } = useCreateOrUpdateBook();
+    const queryClient = useQueryClient()
+    const { mutate, isLoading, isError } = useCreateOrUpdateBook(queryClient);
 
     const handleBookAdditionOrEditing = () => { 
         const payload = {...form}
@@ -125,7 +127,8 @@ const BooksAddOrEditModal = ({ bookToEdit }: Props): JSX.Element => {
                     <Button
                         type="primary"
                         htmlType="submit"
-                        className="login-form-button">
+                        className="login-form-button"
+                        disabled={isLoading}>
                         {isLoading ? "Processing..." : isEditMode ? "Edit" : "Add"}
                         </Button>
                 </Form.Item>
