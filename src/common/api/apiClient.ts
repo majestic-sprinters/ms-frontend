@@ -3,6 +3,9 @@ import IUser from "../types/IUser"
 import IBook from "../types/IBook"
 
 const BASE_URL = import.meta.env.VITE_API_URL
+const CREDENTIALS = import.meta.env.VITE_API_CREDENTIALS
+
+axios.defaults.headers.common['Authorization'] = CREDENTIALS;
 
 const apiClient = {
     users: {
